@@ -1,18 +1,41 @@
-## Getting Started
+<div align="center">
+  <h1>Pretty Print Java</h1>
+</div>
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+**🔥 Description** <br>
 
-## Folder Structure
+A simple table printer made using Java. <br>
 
-The workspace contains two folders by default, where:
+# 📄 SAMPLE USAGE 
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+```Java
+public class Test
+{
+    public static void main(String[] args) throws InvalidTableError
+    {
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+        String[] model  = {"Name","Age","Address","Contact no"};
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+        String[][] data = {
+            {"Billy Joe"      , "21"    , "Barangay Iponan"         , "0935XXXXXXX"},
+            {"Andy"           , "69420" , "Igpit Youngsville"       , "0926XXXXXXX"},
+            {"Marielle"       , "22"    , "Initao Misamis Oriental" , "0967XXXXXXX"},
+            {"Philipp Andrew" , "23"    , "Igpit Youngsville"       , "0945XXXXXXX"}
+        };
 
-## Dependency Management
+        PrettyPrint pp = new PrettyPrint(model, data, Alignment.RIGHT);
+        
+        System.out.println("RIGHT align:");
+        System.out.println(pp);
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+        // pp.pprint();
+
+    }
+}
+```
+# 📷 SAMPLE SCREENSHOTS
+<div align="left" style="display:inline;">
+    <img style="display:inline-block;max-width:120px;max-height: 90px;" src="screenshots/screenshot_1.PNG" alt="screenshot-1" width="auto" height="67px"/>
+    <img style="display:inline-block;max-width:120px;max-height: 90px;" src="screenshots/screenshot_2.PNG" alt="screenshot-2" width="auto" height="67px"/>
+    <img style="display:inline-block;max-width:120px;max-height: 90px;" src="screenshots/screenshot_3.PNG" alt="screenshot-3" width="auto" height="67px"/>
+</div>
