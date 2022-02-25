@@ -125,6 +125,7 @@ public class PrettyPrint
 
     /**
      * Returns the table as string.
+     * @return String
      */
     public String as_String()
     {
