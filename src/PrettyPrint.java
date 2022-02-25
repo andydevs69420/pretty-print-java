@@ -11,15 +11,16 @@ enum Alignment
 }
 
 
-class EmptyModelError extends Exception
+class InvalidTableError extends Exception
 {
-    public EmptyModelError()
+
+    public InvalidTableError()
     { super(); }
 
-    public EmptyModelError(String message)
+    public InvalidTableError(String message)
     { super(message); }
 
-    public EmptyModelError(String message,Throwable cause)
+    public InvalidTableError(String message,Throwable cause)
     { super(message,cause); }
 
 }
@@ -34,14 +35,13 @@ public class PrettyPrint
      * @param column_model The column model of your table
      * @param column_data  The data of your table for each rows and columns
      */
-    public PrettyPrint(String[] column_model,String[][] column_data) throws EmptyModelError
+    public PrettyPrint(String[] column_model,String[][] column_data) throws InvalidTableError
     {
-        if (column_model.length <= 0)
-            throw new EmptyModelError("Table model cannot be empty!");
+        this.verify(column_model, column_data);
 
-        this.alignment  = Alignment.LEFT; // left align is the default
+        this.alignment = Alignment.LEFT; // left align is the default
         this.col_model = column_model;
-        this.col_data   = column_data;
+        this.col_data  = column_data;
     }
 
     /**
@@ -49,14 +49,25 @@ public class PrettyPrint
      * @param column_data  The data of your table for each rows and columns.
      * @param alignment    Specifies the alignment for each cell in the table except for the model which is always sets to CENTER.
      */
-    public PrettyPrint(String[] column_models,String[][] column_data,Alignment alignment) throws EmptyModelError
+    public PrettyPrint(String[] column_model,String[][] column_data,Alignment alignment) throws InvalidTableError
     {
-        if (column_models.length <= 0)
-            throw new EmptyModelError("Table model cannot be empty!");
+        this.verify(column_model, column_data);
 
-        this.alignment  = alignment; // left align is the default
-        this.col_model = column_models;
-        this.col_data   = column_data;
+        this.alignment = alignment;
+        this.col_model = column_model;
+        this.col_data  = column_data;
+    }
+
+    private void verify(String[] column_model,String[][] column_data) throws InvalidTableError
+    {
+        if (column_model.length <= 0)
+            throw new InvalidTableError("Table model cannot be empty!");
+
+        for (String[] row : column_data)
+        {
+            if (column_model.length != row.length)
+                throw new InvalidTableError(String.format("expected column count %d, got %d", column_data.length,row.length));
+        }
     }
 
     private int[] getColMax(String[][] table)
