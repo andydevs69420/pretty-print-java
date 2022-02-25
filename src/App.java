@@ -11,21 +11,21 @@
 
 public class App 
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws EmptyModelError
     {
 
         String[] headers = {"Name","Age","Address","Contact no"};
 
         String[][] data  = {
-            {"Philipp1","21","Barangay Iponan"  ,"09455477865"},
-            {"Philipp2","22","Igpit Younsville" ,"09455477865"},
-            {"Philipp3","23","Igpit Younsville" ,"09455477865"},
-            {"Philipp0","20","Igpit Youngsvillezzzzzzzzzzzzzzzzzzz","09455477865"}
+            {"Billy Joe"      , "21"    , "Barangay Iponan"         , "0945547786500000000000"},
+            {"Andy"           , "69420" , "Igpit Younsville"        , "09455477865"},
+            {"Marielle"       , "22"    , "Initao Misamis Oriental" , "09455477865"},
+            {"Philipp Andrew" , "23"    , "Igpit Youngsville"       , "09455477865"}
         };
 
-        PrettyPrint pp = new PrettyPrint(headers, data);
+        PrettyPrint pp = new PrettyPrint(headers, data, Alignment.CENTER);
         
-        pp.pprint();
+        System.out.println(pp);
 
     }
 }
